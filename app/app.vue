@@ -1,6 +1,7 @@
 <template>
   <div>
     <NuxtRouteAnnouncer />
+    <PageLoader />
     <div class="grain-overlay" aria-hidden="true" />
     <CustomCursor />
     <TheNav />
@@ -13,5 +14,6 @@
       <ContactSection />
     </main>
     <TheFooter />
+    <BackToTop />
   </div>
 </template>
