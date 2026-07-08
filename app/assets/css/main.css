@@ -60,6 +60,11 @@ a {
   text-decoration: none;
 }
 
+::selection {
+  background: rgba(0, 153, 255, 0.35);
+  color: var(--color-ink);
+}
+
 .custom-cursor-active,
 .custom-cursor-active a,
 .custom-cursor-active button {
@@ -245,7 +250,7 @@ ul {
 a:focus-visible,
 button:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 153, 255, 0.15);
+  box-shadow: 0 0 0 1px var(--color-accent-blue), 0 0 0 4px rgba(0, 153, 255, 0.2);
   border-radius: var(--radius-md);
 }
 
@@ -253,6 +258,12 @@ button:focus-visible {
   background: var(--color-surface-1);
   border-radius: var(--radius-xl);
   padding: 24px;
+  transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.card:hover {
+  background: var(--color-surface-2);
+  transform: translateY(-2px);
 }
 
 .chip {
@@ -274,6 +285,11 @@ button:focus-visible {
   border-radius: var(--radius-xxl);
   padding: 32px;
   color: var(--color-ink);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spotlight-card:hover {
+  transform: scale(1.015);
 }
 
 .spotlight-card::after {

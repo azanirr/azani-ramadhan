@@ -80,6 +80,23 @@ const words = ['Azani', 'Ramadhan']
   display: inline-block;
   animation: word-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: var(--d, 0s);
+  background: linear-gradient(
+    110deg,
+    var(--color-ink) 40%,
+    var(--color-gradient-violet) 47%,
+    var(--color-gradient-magenta) 53%,
+    var(--color-ink) 60%
+  );
+  background-size: 300% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: background-position 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-title:hover .word-inner {
+  color: transparent;
+  background-position: 0 0;
 }
 
 @keyframes word-reveal {
@@ -124,6 +141,7 @@ const words = ['Azani', 'Ramadhan']
     var(--color-gradient-orange),
     var(--color-gradient-violet)
   );
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .hero-photo {
@@ -135,6 +153,16 @@ const words = ['Azani', 'Ramadhan']
   object-fit: cover;
   border-radius: var(--radius-xxl);
   border: 2px solid var(--color-surface-2);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-photo-wrap:hover .hero-photo {
+  transform: scale(1.04) rotate(-1.5deg);
+}
+
+.hero-photo-wrap:hover .hero-photo-glow {
+  opacity: 0.85;
+  transform: scale(1.08);
 }
 
 @keyframes photo-float {
