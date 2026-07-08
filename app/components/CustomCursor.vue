@@ -1,18 +1,25 @@
 <script setup>
+import { nextTick, onMounted, onUnmounted, ref } from 'vue'
+import { gsap } from 'gsap'
+
 const enabled = ref(false)
 const isHovering = ref(false)
-const x = ref(0)
-const y = ref(0)
+const dot = ref(null)
 
-onMounted(() => {
+onMounted(async () => {
   if (window.matchMedia('(pointer: coarse)').matches) return
 
   enabled.value = true
   document.body.classList.add('custom-cursor-active')
+  await nextTick()
+
+  gsap.set(dot.value, { xPercent: -50, yPercent: -50, x: -100, y: -100 })
+  const xTo = gsap.quickTo(dot.value, 'x', { duration: 0.12, ease: 'power3' })
+  const yTo = gsap.quickTo(dot.value, 'y', { duration: 0.12, ease: 'power3' })
 
   function handleMove(event) {
-    x.value = event.clientX
-    y.value = event.clientY
+    xTo(event.clientX)
+    yTo(event.clientY)
   }
 
   function handleOver(event) {
@@ -26,6 +33,7 @@ onMounted(() => {
     window.removeEventListener('mousemove', handleMove)
     window.removeEventListener('mouseover', handleOver)
     document.body.classList.remove('custom-cursor-active')
+    if (dot.value) gsap.killTweensOf(dot.value)
   })
 })
 </script>
@@ -33,9 +41,9 @@ onMounted(() => {
 <template>
   <div
     v-if="enabled"
+    ref="dot"
     class="cursor-dot"
     :class="{ 'is-active': isHovering }"
-    :style="{ transform: `translate(${x}px, ${y}px)` }"
   />
 </template>
 
@@ -46,20 +54,18 @@ onMounted(() => {
   left: 0;
   width: 10px;
   height: 10px;
-  margin: -5px 0 0 -5px;
   border-radius: var(--radius-full);
   background: var(--color-ink);
   box-shadow: 0 0 0 2px var(--color-canvas);
   opacity: 0.9;
   pointer-events: none;
   z-index: 9999;
-  transition: width 0.2s ease, height 0.2s ease, margin 0.2s ease, background-color 0.2s ease;
+  transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
 }
 
 .cursor-dot.is-active {
   width: 36px;
   height: 36px;
-  margin: -18px 0 0 -18px;
   background: var(--color-accent);
 }
 </style>

@@ -1,4 +1,67 @@
 <script setup>
+import { onMounted, onUnmounted, ref } from 'vue'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+const marqueeRoot = ref(null)
+let mm
+
+onMounted(() => {
+  if (!marqueeRoot.value) return
+
+  mm = gsap.matchMedia()
+
+  mm.add(
+    { motionOk: '(prefers-reduced-motion: no-preference)' },
+    () => {
+      const loop = gsap.to('.marquee-track', {
+        xPercent: -50,
+        duration: 32,
+        ease: 'none',
+        repeat: -1,
+      })
+
+      let hovered = false
+      let settleTween
+
+      ScrollTrigger.create({
+        onUpdate(self) {
+          if (hovered) return
+          const velocity = self.getVelocity()
+          const direction = velocity < 0 ? -1 : 1
+          const boost = gsap.utils.clamp(1, 6, Math.abs(velocity) / 300)
+          settleTween?.kill()
+          loop.timeScale(boost * direction)
+          settleTween = gsap.to(loop, { timeScale: 1, duration: 1.2, ease: 'power2.out' })
+        },
+      })
+
+      const track = marqueeRoot.value.querySelector('.marquee')
+      const pause = () => {
+        hovered = true
+        settleTween?.kill()
+        settleTween = gsap.to(loop, { timeScale: 0, duration: 0.4 })
+      }
+      const resume = () => {
+        hovered = false
+        settleTween?.kill()
+        settleTween = gsap.to(loop, { timeScale: 1, duration: 0.4 })
+      }
+      track.addEventListener('mouseenter', pause)
+      track.addEventListener('mouseleave', resume)
+      return () => {
+        track.removeEventListener('mouseenter', pause)
+        track.removeEventListener('mouseleave', resume)
+      }
+    },
+    marqueeRoot.value,
+  )
+})
+
+onUnmounted(() => {
+  mm?.revert()
+})
+
 const coreSkills = [
   'Vue.js', 'Nuxt', 'React', 'JavaScript', 'CSS', 'SCSS', 'SASS', 'Tailwind', 'Bootstrap', 'Vuex', 'Redux', 'jQuery',
 ]
@@ -10,7 +73,7 @@ const otherSkills = [
 </script>
 
 <template>
-  <section id="skills" v-reveal class="section">
+  <section id="skills" ref="marqueeRoot" v-reveal class="section">
     <div class="container">
       <h2 class="eyebrow">Skills</h2>
 

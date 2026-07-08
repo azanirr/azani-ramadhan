@@ -1,19 +1,58 @@
 <script setup>
+import { onMounted, onUnmounted, ref } from 'vue'
+import { gsap } from 'gsap'
+
 const words = ['Azani', 'Ramadhan']
+const heroRoot = ref(null)
+let mm
+
+onMounted(() => {
+  if (!heroRoot.value) return
+
+  mm = gsap.matchMedia()
+
+  mm.add(
+    {
+      reduceMotion: '(prefers-reduced-motion: reduce)',
+      motionOk: '(prefers-reduced-motion: no-preference)',
+    },
+    (context) => {
+      const { reduceMotion } = context.conditions
+      const move = reduceMotion ? 0 : 16
+      const stagger = reduceMotion ? 0 : 0.08
+
+      const tl = gsap.timeline({
+        defaults: { ease: 'power3.out', duration: reduceMotion ? 0 : 0.9 },
+      })
+
+      tl.from('.eyebrow', { autoAlpha: 0, y: move })
+        .from('.word-inner', { yPercent: reduceMotion ? 0 : 110, stagger }, '-=0.6')
+        .from('.hero-subhead', { autoAlpha: 0, y: move }, '-=0.5')
+        .from('.hero-actions .btn', { autoAlpha: 0, y: move, stagger }, '-=0.5')
+        .from('.hero-photo-wrap', { autoAlpha: 0 }, '-=0.7')
+        .from('.hero-photo', { scale: reduceMotion ? 1 : 0.9, clearProps: 'transform' }, '<')
+    },
+    heroRoot.value,
+  )
+})
+
+onUnmounted(() => {
+  mm?.revert()
+})
 </script>
 
 <template>
-  <section id="top" class="section hero container">
+  <section id="top" ref="heroRoot" class="section hero container">
     <div class="hero-grid">
       <div class="hero-content">
         <p class="eyebrow">Front End Engineer</p>
         <h1 class="display-xxl hero-title">
           <span
-            v-for="(word, index) in words"
+            v-for="word in words"
             :key="word"
             class="word-mask"
           >
-            <span class="word-inner" :style="{ '--d': `${index * 0.08}s` }">{{ word }}</span>
+            <span class="word-inner">{{ word }}</span>
           </span>
         </h1>
         <p class="subhead ink-muted hero-subhead">
@@ -79,8 +118,6 @@ const words = ['Azani', 'Ramadhan']
 
 .word-inner {
   display: inline-block;
-  animation: word-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: var(--d, 0s);
   background: linear-gradient(
     110deg,
     var(--color-ink) 40%,
@@ -98,15 +135,6 @@ const words = ['Azani', 'Ramadhan']
 .hero-title:hover .word-inner {
   color: transparent;
   background-position: 0 0;
-}
-
-@keyframes word-reveal {
-  from {
-    transform: translateY(110%);
-  }
-  to {
-    transform: translateY(0);
-  }
 }
 
 .hero-subhead {
@@ -180,9 +208,6 @@ const words = ['Azani', 'Ramadhan']
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .word-inner {
-    animation: none;
-  }
   .hero-photo-wrap {
     animation: none;
   }

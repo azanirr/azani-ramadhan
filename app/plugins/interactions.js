@@ -1,21 +1,46 @@
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
+
 export default defineNuxtPlugin((nuxtApp) => {
+  if (import.meta.client) {
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
+
+    document.addEventListener('click', (event) => {
+      const anchor = event.target.closest('a[href^="#"]')
+      if (!anchor) return
+      const href = anchor.getAttribute('href')
+      if (href.length < 2) return
+      const target = document.querySelector(href)
+      if (!target) return
+
+      event.preventDefault()
+      history.pushState(null, '', href)
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      gsap.to(window, {
+        scrollTo: { y: href === '#top' ? 0 : target, offsetY: 56 },
+        duration: reduceMotion ? 0 : 0.9,
+        ease: 'power3.out',
+      })
+    })
+  }
+
   nuxtApp.vueApp.directive('reveal', {
     mounted(el) {
-      el.classList.add('reveal')
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            el.classList.add('is-visible')
-            observer.disconnect()
-          }
-        },
-        { threshold: 0.15 },
-      )
-      observer.observe(el)
-      el.__revealObserver = observer
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+      const delay = parseFloat(el.style.getPropertyValue('--reveal-delay')) || 0
+      el.__revealTween = gsap.from(el, {
+        autoAlpha: 0,
+        y: 24,
+        duration: 0.7,
+        delay,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+      })
     },
     unmounted(el) {
-      el.__revealObserver?.disconnect()
+      el.__revealTween?.revert()
     },
   })
 
