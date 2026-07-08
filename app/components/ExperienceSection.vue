@@ -49,6 +49,7 @@ const roles = [
         :key="role.title + role.period"
         v-reveal
         class="card role"
+        :class="{ 'role-current': index === 0 }"
         :style="{ '--reveal-delay': `${index * 0.1}s` }"
       >
         <div class="role-head">
@@ -71,10 +72,43 @@ const roles = [
 
 <style scoped>
 .roles {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
   margin-top: var(--space-lg);
+  padding-left: 28px;
+}
+
+.roles::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--color-hairline);
+}
+
+.role {
+  position: relative;
+}
+
+.role::before {
+  content: '';
+  position: absolute;
+  left: -28px;
+  top: 28px;
+  width: 9px;
+  height: 9px;
+  border-radius: var(--radius-full);
+  background: var(--color-ink-muted);
+  box-shadow: 0 0 0 4px var(--color-canvas);
+}
+
+.role-current::before {
+  background: var(--color-accent-blue);
+  box-shadow: 0 0 0 4px var(--color-canvas), 0 0 0 6px rgba(0, 153, 255, 0.25);
 }
 
 .role-head {

@@ -1,6 +1,8 @@
 <template>
   <div>
     <NuxtRouteAnnouncer />
+    <div class="grain-overlay" aria-hidden="true" />
+    <CustomCursor />
     <TheNav />
     <main>
       <HeroSection />

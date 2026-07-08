@@ -12,6 +12,20 @@ export default defineNuxtConfig({
           name: 'description',
           content: 'Front End Engineer with 5+ years building scalable web applications with Vue, React, and Nuxt.',
         },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:title', content: 'Azani Ramadhan — Front End Engineer' },
+        {
+          property: 'og:description',
+          content: 'Front End Engineer with 5+ years building scalable web applications with Vue, React, and Nuxt.',
+        },
+        { property: 'og:image', content: '/profile.jpg' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: 'Azani Ramadhan — Front End Engineer' },
+        {
+          name: 'twitter:description',
+          content: 'Front End Engineer with 5+ years building scalable web applications with Vue, React, and Nuxt.',
+        },
+        { name: 'twitter:image', content: '/profile.jpg' },
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },

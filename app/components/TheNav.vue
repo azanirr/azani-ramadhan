@@ -1,5 +1,6 @@
 <script setup>
 const isOpen = ref(false)
+const activeHref = ref('')
 
 const links = [
   { label: 'About', href: '#about' },
@@ -12,6 +13,23 @@ const links = [
 function close() {
   isOpen.value = false
 }
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          activeHref.value = `#${entry.target.id}`
+        }
+      })
+    },
+    { rootMargin: '-45% 0px -45% 0px', threshold: 0 },
+  )
+
+  document.querySelectorAll('main section[id]').forEach((section) => observer.observe(section))
+
+  onUnmounted(() => observer.disconnect())
+})
 </script>
 
 <template>
@@ -25,6 +43,7 @@ function close() {
           :key="link.href"
           :href="link.href"
           class="body-sm link"
+          :class="{ 'link-active': activeHref === link.href }"
           @click="close"
         >{{ link.label }}</a>
       </nav>
@@ -91,12 +110,28 @@ function close() {
 }
 
 .link {
+  position: relative;
   color: var(--color-ink-muted);
   transition: color 0.15s ease;
 }
 
 .link:hover {
   color: var(--color-ink);
+}
+
+.link-active {
+  color: var(--color-ink);
+}
+
+.link-active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 2px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent-blue);
 }
 
 .actions {
