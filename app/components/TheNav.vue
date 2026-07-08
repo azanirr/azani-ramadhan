@@ -17,7 +17,7 @@ function close() {
 <template>
   <header class="nav">
     <div class="container nav-inner">
-      <a href="#top" class="wordmark body-sm">Azani Ramadhan</a>
+      <a href="#top" class="logo-mark" aria-label="Azani Ramadhan — home">ΛZ</a>
 
       <nav class="links" :class="{ open: isOpen }">
         <a
@@ -64,9 +64,24 @@ function close() {
   gap: var(--space-lg);
 }
 
-.wordmark {
+.logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.logo-mark:hover {
+  transform: scale(1.06) rotate(-4deg);
 }
 
 .links {

@@ -14,7 +14,7 @@ const links = [
       <h2 class="display-lg">Let's build something reliable together.</h2>
       <p class="body-lg ink-muted contact-copy">
         Open to front-end and Micro Frontend architecture opportunities. Based in
-        Kaliurang, Yogyakarta, Indonesia.
+        Indonesia.
       </p>
 
       <div class="contact-actions">
