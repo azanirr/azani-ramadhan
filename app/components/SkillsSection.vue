@@ -12,7 +12,7 @@ const otherSkills = [
 <template>
   <section id="skills" v-reveal class="section">
     <div class="container">
-      <p class="eyebrow">Skills</p>
+      <h2 class="eyebrow">Skills</h2>
 
       <p class="caption ink-muted core-label">Core Frontend Stack</p>
       <div class="core-chips">

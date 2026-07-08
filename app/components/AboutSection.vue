@@ -1,6 +1,6 @@
 <template>
   <section id="about" v-reveal class="section container">
-    <p class="eyebrow">About</p>
+    <h2 class="eyebrow">About</h2>
     <p class="body-lg about-copy">
       Front-End Engineer with 5+ years of experience building scalable web applications
       using Vue, React, and Nuxt. Led key initiatives at Mekari and Global Inovasi

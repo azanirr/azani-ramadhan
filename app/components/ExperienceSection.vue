@@ -41,7 +41,7 @@ const roles = [
 
 <template>
   <section id="experience" class="section container">
-    <p class="eyebrow">Experience</p>
+    <h2 class="eyebrow">Experience</h2>
 
     <div class="roles">
       <article

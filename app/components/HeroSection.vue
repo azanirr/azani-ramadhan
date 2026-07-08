@@ -27,7 +27,7 @@ const words = ['Azani', 'Ramadhan']
             v-magnetic
             href="https://www.linkedin.com/in/azaniramadhan"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             class="btn btn-secondary"
           >LinkedIn</a>
         </div>
@@ -37,9 +37,10 @@ const words = ['Azani', 'Ramadhan']
         <div class="hero-photo-glow" aria-hidden="true" />
         <img
           src="/profile.jpg"
-          alt="Azani Ramadhan"
+          alt="Portrait of Azani Ramadhan"
           width="360"
           height="360"
+          fetchpriority="high"
           class="hero-photo"
         >
       </div>

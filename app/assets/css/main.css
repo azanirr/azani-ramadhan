@@ -65,6 +65,24 @@ a {
   color: var(--color-ink);
 }
 
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 300;
+  padding: 10px 15px;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-size: 14px;
+  font-weight: 500;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 .custom-cursor-active,
 .custom-cursor-active a,
 .custom-cursor-active button {
@@ -223,6 +241,12 @@ ul {
   transform: translate(var(--magnet-x), var(--magnet-y));
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.15s ease;
   white-space: nowrap;
+}
+
+@media (pointer: coarse) {
+  .btn {
+    min-height: 44px;
+  }
 }
 
 .btn-primary {

@@ -34,7 +34,7 @@ const achievements = [
 
 <template>
   <section id="achievements" class="section container">
-    <p class="eyebrow">Key Achievements</p>
+    <h2 class="eyebrow">Key Achievements</h2>
 
     <div class="grid">
       <article

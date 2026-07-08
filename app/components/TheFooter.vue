@@ -31,13 +31,13 @@ onUnmounted(() => {
         <a
           href="https://www.linkedin.com/in/azaniramadhan"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           class="caption ink-muted"
         >LinkedIn</a>
         <a
           href="https://github.com/azanirr"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           class="caption ink-muted"
         >GitHub</a>
       </div>

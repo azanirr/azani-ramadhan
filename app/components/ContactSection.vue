@@ -10,8 +10,8 @@ const links = [
 <template>
   <section id="contact" v-reveal class="section container">
     <div class="card contact-card">
-      <p class="eyebrow">Contact</p>
-      <h2 class="display-lg">Let's build something reliable together.</h2>
+      <h2 class="eyebrow">Contact</h2>
+      <p class="display-lg">Let's build something reliable together.</p>
       <p class="body-lg ink-muted contact-copy">
         Open to front-end and Micro Frontend architecture opportunities. Based in
         Indonesia.
@@ -23,21 +23,26 @@ const links = [
           v-magnetic
           href="https://www.linkedin.com/in/azaniramadhan"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           class="btn btn-secondary"
         >LinkedIn</a>
         <a
           v-magnetic
           href="https://github.com/azanirr"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           class="btn btn-secondary"
         >GitHub</a>
       </div>
 
       <ul class="contact-links">
         <li v-for="link in links" :key="link.href">
-          <a :href="link.href" class="body-sm link-accent" target="_blank" rel="noopener">
+          <a
+            :href="link.href"
+            class="body-sm link-accent"
+            :target="link.href.startsWith('http') ? '_blank' : undefined"
+            :rel="link.href.startsWith('http') ? 'noopener noreferrer' : undefined"
+          >
             {{ link.label }}
           </a>
         </li>
