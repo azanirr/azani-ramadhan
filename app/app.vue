@@ -38,6 +38,7 @@ useHead({
       <ExperienceSection />
       <AchievementsSection />
       <SkillsSection />
+      <HobbiesSection />
       <ContactSection />
     </main>
     <TheFooter />

@@ -119,7 +119,8 @@ ul {
 }
 
 .section {
-  padding: var(--space-section) 0;
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
 }
 
 @media (max-width: 810px) {
@@ -127,7 +128,8 @@ ul {
     padding: 0 var(--space-lg);
   }
   .section {
-    padding: 64px 0;
+    padding-top: 64px;
+    padding-bottom: 64px;
   }
 }
 

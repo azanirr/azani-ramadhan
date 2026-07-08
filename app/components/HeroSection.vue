@@ -186,15 +186,39 @@ const words = ['Azani', 'Ramadhan']
 }
 
 @media (max-width: 810px) {
+  .hero {
+    padding-top: 40px;
+  }
+
   .hero-grid {
     flex-direction: column-reverse;
     align-items: flex-start;
-    gap: var(--space-xl);
+    gap: var(--space-lg);
   }
 
   .hero-photo-wrap {
-    width: 180px;
-    height: 180px;
+    width: 140px;
+    height: 140px;
+  }
+
+  .hero-title {
+    margin-top: var(--space-sm);
+  }
+
+  .hero-subhead {
+    margin-top: var(--space-md);
+  }
+
+  .hero-actions {
+    margin-top: var(--space-lg);
+  }
+}
+
+@media (max-width: 810px) and (max-height: 700px) {
+  .hero-photo-wrap {
+    width: 96px;
+    height: 96px;
+    animation: none;
   }
 }
 </style>

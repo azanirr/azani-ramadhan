@@ -7,6 +7,7 @@ const links = [
   { label: 'Experience', href: '#experience' },
   { label: 'Achievements', href: '#achievements' },
   { label: 'Skills', href: '#skills' },
+  { label: 'Hobbies', href: '#hobbies' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -188,6 +189,12 @@ onMounted(() => {
   .link {
     padding: var(--space-sm) 0;
     width: 100%;
+  }
+
+  .link-active::after {
+    right: auto;
+    width: 20px;
+    bottom: 6px;
   }
 
   .menu-toggle {
