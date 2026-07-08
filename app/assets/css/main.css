@@ -1,7 +1,8 @@
 :root {
   --color-primary: #ffffff;
   --color-on-primary: #000000;
-  --color-accent-blue: #0099ff;
+  --color-accent: #0099ff;
+  --color-accent-rgb: 0, 153, 255;
   --color-ink: #ffffff;
   --color-ink-muted: #999999;
   --color-canvas: #090909;
@@ -9,11 +10,14 @@
   --color-surface-2: #1c1c1c;
   --color-hairline: #262626;
   --color-hairline-soft: #1a1a1a;
-  --color-gradient-magenta: #d44df0;
-  --color-gradient-violet: #6a4cf5;
-  --color-gradient-orange: #ff7a3d;
-  --color-gradient-coral: #ff5577;
-  --color-success: #22c55e;
+  --color-block-1: #6a4cf5;
+  --color-block-1-deep: #3d2b8f;
+  --color-block-2: #d44df0;
+  --color-block-2-deep: #8f22b8;
+  --color-block-3: #ff7a3d;
+  --color-block-3-deep: #c9490f;
+  --color-block-4: #ff5577;
+  --color-block-4-deep: #b8123f;
 
   --radius-xs: 4px;
   --radius-sm: 6px;
@@ -31,6 +35,90 @@
   --space-xl: 30px;
   --space-xxl: 40px;
   --space-section: 96px;
+
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --grain-opacity: 0.045;
+  --glow-display: block;
+  --glow-opacity-rest: 0.55;
+  --glow-opacity-hover: 0.85;
+  --color-glow-1: var(--color-block-1);
+  --color-glow-2: var(--color-block-2);
+  --color-glow-3: var(--color-block-3);
+}
+
+:root[data-theme='uber'] {
+  --color-primary: #000000;
+  --color-on-primary: #ffffff;
+  --color-accent: #0000ee;
+  --color-accent-rgb: 0, 0, 238;
+  --color-ink: #000000;
+  --color-ink-muted: #5e5e5e;
+  --color-canvas: #ffffff;
+  --color-surface-1: #efefef;
+  --color-surface-2: #e2e2e2;
+  --color-hairline: #d9d9d9;
+  --color-hairline-soft: #eeeeee;
+  --color-block-1: #000000;
+  --color-block-1-deep: #000000;
+  --color-block-2: #ffffff;
+  --color-block-2-deep: #ffffff;
+  --color-block-3: #000000;
+  --color-block-3-deep: #000000;
+  --color-block-4: #ffffff;
+  --color-block-4-deep: #ffffff;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-xxl: 16px;
+  --radius-pill: 999px;
+
+  --font-body: -apple-system, 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --grain-opacity: 0;
+  --glow-display: none;
+  --photo-elevation: 0 20px 40px rgba(0, 0, 0, 0.16);
+  --photo-elevation-hover: 0 28px 56px rgba(0, 0, 0, 0.26);
+}
+
+:root[data-theme='figma'] {
+  --color-primary: #000000;
+  --color-on-primary: #ffffff;
+  --color-accent: #ff3d8b;
+  --color-accent-rgb: 255, 61, 139;
+  --color-ink: #000000;
+  --color-ink-muted: #6b6b6b;
+  --color-canvas: #ffffff;
+  --color-surface-1: #f7f7f5;
+  --color-surface-2: #f1f1f1;
+  --color-hairline: #e6e6e6;
+  --color-hairline-soft: #f1f1f1;
+  --color-block-1: #dceeb1;
+  --color-block-1-deep: #dceeb1;
+  --color-block-2: #c5b0f4;
+  --color-block-2-deep: #c5b0f4;
+  --color-block-3: #f3c9b6;
+  --color-block-3-deep: #f3c9b6;
+  --color-block-4: #c8e6cd;
+  --color-block-4-deep: #c8e6cd;
+
+  --radius-xs: 2px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-xxl: 32px;
+  --radius-pill: 50px;
+
+  --font-body: 'Space Grotesk', system-ui, sans-serif;
+  --grain-opacity: 0;
+  --glow-display: block;
+  --glow-opacity-rest: 0.8;
+  --glow-opacity-hover: 1;
+  --color-glow-1: var(--color-accent);
+  --color-glow-2: var(--color-block-2);
+  --color-glow-3: var(--color-block-4);
 }
 
 * {
@@ -47,8 +135,9 @@ body {
   padding: 0;
   background: var(--color-canvas);
   color: var(--color-ink);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 section[id] {
@@ -61,7 +150,7 @@ a {
 }
 
 ::selection {
-  background: rgba(0, 153, 255, 0.35);
+  background: rgba(var(--color-accent-rgb), 0.35);
   color: var(--color-ink);
 }
 
@@ -93,8 +182,9 @@ a {
   position: fixed;
   inset: 0;
   z-index: 60;
-  opacity: 0.045;
+  opacity: var(--grain-opacity);
   pointer-events: none;
+  transition: opacity 0.3s ease;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
@@ -109,7 +199,7 @@ ul {
 }
 
 .link-accent {
-  color: var(--color-accent-blue);
+  color: var(--color-accent);
 }
 
 .container {
@@ -276,7 +366,7 @@ ul {
 a:focus-visible,
 button:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 1px var(--color-accent-blue), 0 0 0 4px rgba(0, 153, 255, 0.2);
+  box-shadow: 0 0 0 1px var(--color-accent), 0 0 0 4px rgba(var(--color-accent-rgb), 0.2);
   border-radius: var(--radius-md);
 }
 
@@ -332,20 +422,35 @@ button:focus-visible {
   opacity: 1;
 }
 
-.spotlight-violet {
-  background: linear-gradient(135deg, var(--color-gradient-violet), #3d2b8f);
+.spotlight-1 {
+  background: linear-gradient(135deg, var(--color-block-1), var(--color-block-1-deep));
 }
 
-.spotlight-magenta {
-  background: linear-gradient(135deg, var(--color-gradient-magenta), #8f22b8);
+.spotlight-2 {
+  background: linear-gradient(135deg, var(--color-block-2), var(--color-block-2-deep));
 }
 
-.spotlight-orange {
-  background: linear-gradient(135deg, var(--color-gradient-orange), #c9490f);
+.spotlight-3 {
+  background: linear-gradient(135deg, var(--color-block-3), var(--color-block-3-deep));
 }
 
-.spotlight-coral {
-  background: linear-gradient(135deg, var(--color-gradient-coral), #b8123f);
+.spotlight-4 {
+  background: linear-gradient(135deg, var(--color-block-4), var(--color-block-4-deep));
+}
+
+[data-theme='uber'] .spotlight-card::after {
+  content: none;
+}
+
+[data-theme='uber'] .spotlight-1,
+[data-theme='uber'] .spotlight-3 {
+  color: var(--color-on-primary);
+}
+
+[data-theme='uber'] .spotlight-2,
+[data-theme='uber'] .spotlight-4 {
+  color: var(--color-ink);
+  border: 1px solid var(--color-hairline);
 }
 
 .reveal {

@@ -15,7 +15,11 @@ function close() {
   isOpen.value = false
 }
 
+const { initTheme } = useTheme()
+
 onMounted(() => {
+  initTheme()
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -47,9 +51,11 @@ onMounted(() => {
           :class="{ 'link-active': activeHref === link.href }"
           @click="close"
         >{{ link.label }}</a>
+        <ThemeSwitcher class="theme-switcher-mobile" />
       </nav>
 
       <div class="actions">
+        <ThemeSwitcher class="theme-switcher-desktop" />
         <a v-magnetic href="mailto:azanirr212@gmail.com" class="btn btn-primary">Email me</a>
         <button
           class="menu-toggle"
@@ -132,13 +138,17 @@ onMounted(() => {
   bottom: -8px;
   height: 2px;
   border-radius: var(--radius-full);
-  background: var(--color-accent-blue);
+  background: var(--color-accent);
 }
 
 .actions {
   display: flex;
   align-items: center;
   gap: var(--space-md);
+}
+
+.theme-switcher-mobile {
+  display: none;
 }
 
 .menu-toggle {
@@ -162,7 +172,7 @@ onMounted(() => {
   background: var(--color-ink);
 }
 
-@media (max-width: 810px) {
+@media (max-width: 960px) {
   .links {
     position: absolute;
     top: 56px;
@@ -201,8 +211,13 @@ onMounted(() => {
     display: flex;
   }
 
-  .actions .btn-primary {
+  .actions .btn-primary,
+  .theme-switcher-desktop {
     display: none;
+  }
+
+  .theme-switcher-mobile {
+    display: flex;
   }
 }
 </style>

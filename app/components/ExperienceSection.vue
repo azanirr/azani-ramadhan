@@ -107,8 +107,8 @@ const roles = [
 }
 
 .role-current::before {
-  background: var(--color-accent-blue);
-  box-shadow: 0 0 0 4px var(--color-canvas), 0 0 0 6px rgba(0, 153, 255, 0.25);
+  background: var(--color-accent);
+  box-shadow: 0 0 0 4px var(--color-canvas), 0 0 0 6px rgba(var(--color-accent-rgb), 0.25);
 }
 
 .role-head {

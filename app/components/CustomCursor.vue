@@ -48,16 +48,18 @@ onMounted(() => {
   height: 10px;
   margin: -5px 0 0 -5px;
   border-radius: var(--radius-full);
-  background: var(--color-primary);
+  background: var(--color-ink);
+  box-shadow: 0 0 0 2px var(--color-canvas);
+  opacity: 0.9;
   pointer-events: none;
   z-index: 9999;
-  mix-blend-mode: difference;
-  transition: width 0.2s ease, height 0.2s ease, margin 0.2s ease;
+  transition: width 0.2s ease, height 0.2s ease, margin 0.2s ease, background-color 0.2s ease;
 }
 
 .cursor-dot.is-active {
   width: 36px;
   height: 36px;
   margin: -18px 0 0 -18px;
+  background: var(--color-accent);
 }
 </style>

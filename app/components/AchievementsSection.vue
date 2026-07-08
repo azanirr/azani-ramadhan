@@ -12,22 +12,22 @@ const achievements = [
   {
     title: 'Qontak One Micro Frontend architecture',
     description: 'Designed and delivered Qontak One Micro Frontend architecture, enhancing scalability and modularity.',
-    variant: 'violet',
+    variant: 1,
   },
   {
     title: 'Scalability & reliability',
     description: 'Maintained a 0% change failure rate in major releases and facilitated the delivery of scalable features.',
-    variant: 'magenta',
+    variant: 2,
   },
   {
     title: 'Agentic AI workflows',
     description: 'Built Agentic AI workflows with LLM API integration and a playwright-core E2E self-test skill.',
-    variant: 'orange',
+    variant: 3,
   },
   {
     title: '3x "Above Expectations" performer',
     description: 'Achieved "Above Expectations" performance ratings three times in Mekari’s biannual appraisals.',
-    variant: 'coral',
+    variant: 4,
   },
 ]
 </script>

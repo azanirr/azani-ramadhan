@@ -84,8 +84,8 @@ const words = ['Azani', 'Ramadhan']
   background: linear-gradient(
     110deg,
     var(--color-ink) 40%,
-    var(--color-gradient-violet) 47%,
-    var(--color-gradient-magenta) 53%,
+    var(--color-block-1) 47%,
+    var(--color-block-2) 53%,
     var(--color-ink) 60%
   );
   background-size: 300% 100%;
@@ -132,15 +132,16 @@ const words = ['Azani', 'Ramadhan']
   position: absolute;
   inset: -32px;
   z-index: 0;
+  display: var(--glow-display);
   border-radius: 50%;
   filter: blur(40px);
-  opacity: 0.55;
+  opacity: var(--glow-opacity-rest, 0.55);
   background: conic-gradient(
     from 180deg,
-    var(--color-gradient-violet),
-    var(--color-gradient-magenta),
-    var(--color-gradient-orange),
-    var(--color-gradient-violet)
+    var(--color-glow-1),
+    var(--color-glow-2),
+    var(--color-glow-3),
+    var(--color-glow-1)
   );
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
@@ -154,15 +155,17 @@ const words = ['Azani', 'Ramadhan']
   object-fit: cover;
   border-radius: var(--radius-xxl);
   border: 2px solid var(--color-surface-2);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--photo-elevation, none);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
 }
 
 .hero-photo-wrap:hover .hero-photo {
   transform: scale(1.04) rotate(-1.5deg);
+  box-shadow: var(--photo-elevation-hover, var(--photo-elevation, none));
 }
 
 .hero-photo-wrap:hover .hero-photo-glow {
-  opacity: 0.85;
+  opacity: var(--glow-opacity-hover, 0.85);
   transform: scale(1.08);
 }
 
