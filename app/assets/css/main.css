@@ -179,6 +179,8 @@ ul {
 }
 
 .btn {
+  --magnet-x: 0px;
+  --magnet-y: 0px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -190,7 +192,8 @@ ul {
   border-radius: var(--radius-pill);
   border: none;
   cursor: pointer;
-  transition: transform 0.15s ease, background-color 0.15s ease;
+  transform: translate(var(--magnet-x), var(--magnet-y));
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.15s ease;
   white-space: nowrap;
 }
 
@@ -199,8 +202,8 @@ ul {
   color: var(--color-on-primary);
 }
 
-.btn-primary:hover {
-  transform: scale(0.97);
+.btn-primary:active {
+  transform: translate(var(--magnet-x), var(--magnet-y)) scale(0.96);
 }
 
 .btn-secondary {
@@ -210,6 +213,10 @@ ul {
 
 .btn-secondary:hover {
   background: var(--color-surface-2);
+}
+
+.btn-secondary:active {
+  transform: translate(var(--magnet-x), var(--magnet-y)) scale(0.96);
 }
 
 a:focus-visible,
@@ -237,9 +244,27 @@ button:focus-visible {
 }
 
 .spotlight-card {
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  overflow: hidden;
   border-radius: var(--radius-xxl);
   padding: 32px;
   color: var(--color-ink);
+}
+
+.spotlight-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx) var(--my), rgba(255, 255, 255, 0.28), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.spotlight-card:hover::after {
+  opacity: 1;
 }
 
 .spotlight-violet {
@@ -256,4 +281,53 @@ button:focus-visible {
 
 .spotlight-coral {
   background: linear-gradient(135deg, var(--color-gradient-coral), #b8123f);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: var(--space-sm);
+  width: max-content;
+  animation: marquee-scroll 32s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .marquee-track {
+    animation: none;
+  }
 }

@@ -30,7 +30,7 @@ function close() {
       </nav>
 
       <div class="actions">
-        <a href="mailto:azanirr212@gmail.com" class="btn btn-primary">Email me</a>
+        <a v-magnetic href="mailto:azanirr212@gmail.com" class="btn btn-primary">Email me</a>
         <button
           class="menu-toggle"
           type="button"

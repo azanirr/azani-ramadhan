@@ -8,7 +8,7 @@ const links = [
 </script>
 
 <template>
-  <section id="contact" class="section container">
+  <section id="contact" v-reveal class="section container">
     <div class="card contact-card">
       <p class="eyebrow">Contact</p>
       <h2 class="display-lg">Let's build something reliable together.</h2>
@@ -18,14 +18,16 @@ const links = [
       </p>
 
       <div class="contact-actions">
-        <a href="mailto:azanirr212@gmail.com" class="btn btn-primary">Email me</a>
+        <a v-magnetic href="mailto:azanirr212@gmail.com" class="btn btn-primary">Email me</a>
         <a
+          v-magnetic
           href="https://www.linkedin.com/in/azaniramadhan"
           target="_blank"
           rel="noopener"
           class="btn btn-secondary"
         >LinkedIn</a>
         <a
+          v-magnetic
           href="https://github.com/azanirr"
           target="_blank"
           rel="noopener"

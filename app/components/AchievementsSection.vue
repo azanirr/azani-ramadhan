@@ -1,4 +1,13 @@
 <script setup>
+function handlePointerMove(event) {
+  const card = event.currentTarget
+  const rect = card.getBoundingClientRect()
+  const x = ((event.clientX - rect.left) / rect.width) * 100
+  const y = ((event.clientY - rect.top) / rect.height) * 100
+  card.style.setProperty('--mx', `${x}%`)
+  card.style.setProperty('--my', `${y}%`)
+}
+
 const achievements = [
   {
     title: 'Qontak One Micro Frontend architecture',
@@ -29,10 +38,13 @@ const achievements = [
 
     <div class="grid">
       <article
-        v-for="item in achievements"
+        v-for="(item, index) in achievements"
         :key="item.title"
+        v-reveal
         class="spotlight-card"
         :class="`spotlight-${item.variant}`"
+        :style="{ '--reveal-delay': `${index * 0.1}s` }"
+        @mousemove="handlePointerMove"
       >
         <h3 class="subhead">{{ item.title }}</h3>
         <p class="body">{{ item.description }}</p>

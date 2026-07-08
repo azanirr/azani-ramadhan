@@ -8,20 +8,22 @@ const skills = [
 </script>
 
 <template>
-  <section id="skills" class="section container">
-    <p class="eyebrow">Skills</p>
+  <section id="skills" v-reveal class="section">
+    <div class="container">
+      <p class="eyebrow">Skills</p>
+    </div>
 
-    <div class="chips">
-      <span v-for="skill in skills" :key="skill" class="chip">{{ skill }}</span>
+    <div class="marquee">
+      <div class="marquee-track">
+        <span v-for="skill in skills" :key="`a-${skill}`" class="chip">{{ skill }}</span>
+        <span v-for="skill in skills" :key="`b-${skill}`" class="chip" aria-hidden="true">{{ skill }}</span>
+      </div>
     </div>
   </section>
 </template>
 
 <style scoped>
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
+.marquee {
   margin-top: var(--space-lg);
 }
 </style>

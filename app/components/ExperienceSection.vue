@@ -44,7 +44,13 @@ const roles = [
     <p class="eyebrow">Experience</p>
 
     <div class="roles">
-      <article v-for="role in roles" :key="role.title + role.period" class="card role">
+      <article
+        v-for="(role, index) in roles"
+        :key="role.title + role.period"
+        v-reveal
+        class="card role"
+        :style="{ '--reveal-delay': `${index * 0.1}s` }"
+      >
         <div class="role-head">
           <div>
             <h3 class="headline">{{ role.title }}</h3>
