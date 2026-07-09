@@ -10,7 +10,7 @@ const hobbies = [
     title: 'Books',
     description: 'My reading log on Goodreads.',
     linkLabel: 'View my shelf',
-    href: 'https://www.goodreads.com/user/show/100494350-azani-ramadhan',
+    href: 'https://www.goodreads.com/review/list/100494350?shelf=read',
   },
 ]
 </script>
