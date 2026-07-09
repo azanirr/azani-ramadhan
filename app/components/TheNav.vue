@@ -3,12 +3,12 @@ const isOpen = ref(false)
 const activeHref = ref('')
 
 const links = [
-  { label: 'About', href: '#about' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Achievements', href: '#achievements' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Hobbies', href: '#hobbies' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '/#about' },
+  { label: 'Experience', href: '/#experience' },
+  { label: 'Achievements', href: '/#achievements' },
+  { label: 'Skills', href: '/#skills' },
+  { label: 'Hobbies', href: '/#hobbies' },
+  { label: 'Contact', href: '/#contact' },
 ]
 
 function close() {
@@ -24,7 +24,7 @@ onMounted(() => {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          activeHref.value = `#${entry.target.id}`
+          activeHref.value = `/#${entry.target.id}`
         }
       })
     },
@@ -40,7 +40,7 @@ onMounted(() => {
 <template>
   <header class="nav">
     <div class="container nav-inner">
-      <a href="#top" class="logo-mark" aria-label="Azani Ramadhan — home">ΛZ</a>
+      <a href="/#top" class="logo-mark" aria-label="Azani Ramadhan — home">ΛZ</a>
 
       <nav class="links" :class="{ open: isOpen }">
         <a

@@ -1,8 +1,15 @@
 <script setup>
+import { gsap } from 'gsap'
+
 const isVisible = ref(false)
 
 function handleScroll() {
   isVisible.value = window.scrollY > 600
+}
+
+function scrollToTop() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  gsap.to(window, { scrollTo: { y: 0 }, duration: reduceMotion ? 0 : 0.9, ease: 'power3.out' })
 }
 
 onMounted(() => {
@@ -13,19 +20,23 @@ onMounted(() => {
 </script>
 
 <template>
-  <a
+  <button
     v-magnetic
-    href="#top"
+    type="button"
     class="back-to-top"
     :class="{ 'is-visible': isVisible }"
     aria-label="Back to top"
-  >↑</a>
+    @click="scrollToTop"
+  >↑</button>
 </template>
 
 <style scoped>
 .back-to-top {
   --magnet-x: 0px;
   --magnet-y: 0px;
+  border: none;
+  font: inherit;
+  cursor: pointer;
   position: fixed;
   right: var(--space-lg);
   bottom: var(--space-lg);

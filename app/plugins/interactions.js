@@ -7,19 +7,20 @@ export default defineNuxtPlugin((nuxtApp) => {
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
     document.addEventListener('click', (event) => {
-      const anchor = event.target.closest('a[href^="#"]')
+      const anchor = event.target.closest('a[href*="#"]')
       if (!anchor) return
-      const href = anchor.getAttribute('href')
-      if (href.length < 2) return
-      const target = document.querySelector(href)
+      const url = new URL(anchor.href, window.location.origin)
+      if (url.pathname !== window.location.pathname) return
+      if (url.hash.length < 2) return
+      const target = document.querySelector(url.hash)
       if (!target) return
 
       event.preventDefault()
-      history.pushState(null, '', href)
+      history.pushState(null, '', url.hash)
 
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       gsap.to(window, {
-        scrollTo: { y: href === '#top' ? 0 : target, offsetY: 56 },
+        scrollTo: { y: url.hash === '#top' ? 0 : target, offsetY: 56 },
         duration: reduceMotion ? 0 : 0.9,
         ease: 'power3.out',
       })

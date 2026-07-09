@@ -20,6 +20,7 @@ const achievements = [
     tag: 'Architecture',
     title: 'Qontak One Micro Frontend',
     description: 'Designed and delivered the Micro Frontend architecture, enhancing scalability and modularity across Qontak products.',
+    href: '/work/qontak-one-micro-frontend',
   },
   {
     type: 'stat',
@@ -116,6 +117,7 @@ onUnmounted(() => {
           <span class="tag">{{ item.tag }}</span>
           <h3 class="subhead">{{ item.title }}</h3>
           <p class="body">{{ item.description }}</p>
+          <NuxtLink v-if="item.href" :to="item.href" class="case-study-link">Read case study →</NuxtLink>
         </template>
       </article>
     </div>
@@ -160,6 +162,21 @@ onUnmounted(() => {
 .spotlight-card p {
   margin-top: var(--space-sm);
   opacity: 0.9;
+}
+
+.case-study-link {
+  align-self: flex-start;
+  margin-top: var(--space-md);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s ease;
+}
+
+.case-study-link:hover {
+  text-decoration-color: currentColor;
 }
 
 .tag {

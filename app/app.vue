@@ -32,15 +32,7 @@ useHead({
     <div class="grain-overlay" aria-hidden="true" />
     <CustomCursor />
     <TheNav />
-    <main id="main">
-      <HeroSection />
-      <AboutSection />
-      <ExperienceSection />
-      <AchievementsSection />
-      <SkillsSection />
-      <HobbiesSection />
-      <ContactSection />
-    </main>
+    <NuxtPage />
     <TheFooter />
     <BackToTop />
   </div>
