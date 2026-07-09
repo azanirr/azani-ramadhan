@@ -9,6 +9,7 @@ const roles = [
       'Maintained 0 SLA breaches during FE on-call across 3 years, with 0 major defects (P0/P1) on new releases',
       'Individual change failure rate of 0% for major P0/P1 issues',
       'Managed and released features on KB WordPress Admin CRM using Nuxt 3 and the WordPress API',
+      'Migrated the CDP frontend from Nuxt 3 to Nuxt 4, improving performance and keeping the codebase on a current, supported framework version',
       'Designed and delivered the Qontak One Micro Frontend architecture, enhancing scalability and modularity',
       'Built Agentic AI workflows (LLM API integration) and a playwright-core E2E self-test skill for automated browser-based quality checks before each release',
     ],

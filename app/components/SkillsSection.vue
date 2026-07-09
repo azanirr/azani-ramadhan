@@ -63,7 +63,7 @@ onUnmounted(() => {
 })
 
 const coreSkills = [
-  'Vue.js', 'Nuxt', 'React', 'JavaScript', 'CSS', 'SCSS', 'SASS', 'Tailwind', 'Bootstrap', 'Vuex', 'Redux', 'jQuery',
+  'Vue.js', 'Nuxt', 'React', 'Next.js', 'JavaScript', 'TypeScript', 'CSS', 'SCSS', 'SASS', 'Tailwind', 'Bootstrap', 'Vuex', 'Redux', 'jQuery',
 ]
 
 const otherSkills = [
