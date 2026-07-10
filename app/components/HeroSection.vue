@@ -74,6 +74,7 @@ onUnmounted(() => {
 
       <div class="hero-photo-wrap">
         <div class="hero-photo-glow" aria-hidden="true" />
+        <Hero3D />
         <img
           src="/profile.jpg"
           alt="Portrait of Azani Ramadhan"
