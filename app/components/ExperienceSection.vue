@@ -72,15 +72,31 @@ function handleMove(bullet, event) {
   movePanel(event)
 }
 
+function closePanel(bullet) {
+  gsap.to(panel.value, {
+    autoAlpha: 0,
+    scale: 0.92,
+    duration: 0.25,
+    ease: 'power2.in',
+    onComplete: () => {
+      if (activeProject.value === bullet) activeProject.value = null
+    },
+  })
+}
+
 function handleLeave(bullet) {
   if (isTouch.value || !bullet.project || activeProject.value !== bullet) return
-  gsap.to(panel.value, { autoAlpha: 0, scale: 0.92, duration: 0.25, ease: 'power2.in' })
-  activeProject.value = null
+  closePanel(bullet)
 }
 
 function handleClick(bullet) {
   if (!bullet.href) return
   window.open(bullet.href, '_blank', 'noopener,noreferrer')
+}
+
+function handleScroll() {
+  if (!activeProject.value) return
+  closePanel(activeProject.value)
 }
 
 onMounted(() => {
@@ -90,9 +106,11 @@ onMounted(() => {
   gsap.set(panel.value, { autoAlpha: 0, scale: 0.92 })
   xTo = gsap.quickTo(panel.value, 'x', { duration: 0.35, ease: 'power3' })
   yTo = gsap.quickTo(panel.value, 'y', { duration: 0.35, ease: 'power3' })
+  window.addEventListener('scroll', handleScroll, { passive: true })
 })
 
 onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
   if (panel.value) gsap.killTweensOf(panel.value)
 })
 </script>
