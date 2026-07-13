@@ -82,11 +82,11 @@ const stack = ['Nuxt 4', 'Vue 3', 'Vite', '@originjs/vite-plugin-federation', 'P
     <section class="section container">
       <h2 v-reveal class="headline section-title">My role</h2>
       <p v-reveal class="body-lg" style="--reveal-delay: 0.05s">
-        I designed and delivered this architecture end to end: the federation contract on both sides,
-        the shared-dependency negotiation strategy, the loading/error boundary for the host, and the
-        runtime state bridge between the two apps. It went out incrementally — first behind a feature
-        flag on one module, then extended to two more product surfaces once the pattern proved
-        stable — rather than as one big cutover.
+        As the main front-end contributor, I drove the implementation of this architecture: the federation
+        contract on both sides, the shared-dependency negotiation strategy, the loading/error boundary for
+        the host, and the runtime state bridge between the two apps. It went out incrementally — first
+        behind a feature flag on one module, then extended to two more product surfaces once the pattern
+        proved stable — rather than as one big cutover.
       </p>
     </section>
 
