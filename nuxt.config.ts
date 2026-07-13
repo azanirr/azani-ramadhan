@@ -6,7 +6,7 @@ const siteDescription = 'Front End Engineer with 5+ years building scalable web 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/eslint'],
+  modules: ['@nuxt/eslint', '@vercel/analytics/nuxt'],
   css: ['~/assets/css/main.css'],
   routeRules: {
     '/**': {
